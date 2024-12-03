@@ -1,30 +1,44 @@
 import React, { useState } from "react";
 
 function AddEmployee({ addEmployee }) {
-  const [employeeName, setEmployeeName] = useState("");
+  const [employee, setEmployee] = useState({
+    name: "",
+    EmployeeId: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEmployee({ ...employee, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newEmployee = { EmployeeId: Date.now(), name: employeeName };
-    addEmployee(newEmployee);
-    setEmployeeName("");
+    if (employee.name && employee.EmployeeId) {
+      addEmployee(employee);
+      setEmployee({ name: "", EmployeeId: "" });
+    }
   };
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <h2>Add Employee</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={employeeName}
-          onChange={(e) => setEmployeeName(e.target.value)}
-          placeholder="Enter employee name"
-        />
-        <button type="submit">Add Employee</button>
-      </form>
-    </div>
+      <input
+        type="text"
+        name="name"
+        value={employee.name}
+        onChange={handleChange}
+        placeholder="Employee Name"
+      />
+      <input
+        type="text"
+        name="EmployeeId"
+        value={employee.EmployeeId}
+        onChange={handleChange}
+        placeholder="Employee ID"
+      />
+      <button type="submit">Add Employee</button>
+    </form>
   );
 }
 
 export default AddEmployee;
-
