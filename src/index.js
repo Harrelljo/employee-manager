@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App'; // Import App component
-import './styles.css'; // Import styles (optional)
+import App from './App';
+// Removed the following two lines as the files are missing
+// import './index.css';
+// import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -9,3 +11,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// If you want to keep performance monitoring, you can ignore this line
+// reportWebVitals();
